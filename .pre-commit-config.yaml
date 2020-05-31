@@ -1,0 +1,17 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    exclude: "/vendor"
+    rev: master
+    hooks:
+      - id: check-added-large-files # 防止提交大文件，最大500kB
+        args: [ '--maxkb=500' ]
+      - id: check-case-conflict # 检查名称是否与不区分大小写的文件系统（例如MacOS HFS +或Windows FAT）冲突的文件
+      - id: check-merge-conflict # 检查包含合并冲突字符串的文件, 防止冲突文件被直接提交
+      - id: no-commit-to-branch # 保护master, develop分支被直接提交
+        args: [ --branch, master ]
+
+  - repo: https://github.com/golangci/golangci-lint
+    exclude: "/vendor"
+    rev: master
+    hooks:
+      - id: golangci-lint
